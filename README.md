@@ -1,6 +1,7 @@
 # Diffusion Model from Scratch
 
-A pedagogical implementation of a Denoising Diffusion Probabilistic Model (DDPM) on 2D toy data, built with PyTorch. The goal is to understand how diffusion models work and their deep connections to statistical physics.
+The idea behind this small project is for me to apply the theory of diffusion models I discovered in the amazing ENS course [From statistical physics to machine learning & back](https://www.phys.ens.psl.eu/en/cours/statistical-physics-machine-learning-back), given by Prof. Giulio Biroly and Prof. Marylou Gabrié.
+It is then a pedagogical implementation of a Denoising Diffusion Probabilistic Model (DDPM) on 2D toy data, built with PyTorch and Claude Opus 4.5. The goal is to understand how diffusion models work and their deep connections to statistical physics.
 
 ## Results
 
