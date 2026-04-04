@@ -689,7 +689,7 @@ def main():
     # Visualize forward process
     print("\n[3] Visualizing forward diffusion...")
     fig_forward = diffusion.visualize_forward_process(data[:2000])
-    plt.savefig('C:/Users/Guilhem/Desktop/Quant/PhyStat&ML/diffusion_from_scratch/forward_process.png',
+    # plt.savefig('figs',
                 dpi=150, bbox_inches='tight')
     plt.close()
     print("    Saved: forward_process.png")
@@ -701,7 +701,7 @@ def main():
     print(f"    Parameters: {num_params:,}")
 
     print("\n[5] Training (with intermediate samples every 100 epochs)...")
-    save_dir = 'C:/Users/Guilhem/Desktop/Quant/PhyStat&ML/diffusion_from_scratch'
+    save_dir = 'diff_2d'
     losses = train_diffusion(model, diffusion, data, num_epochs=500,
                             batch_size=256, lr=1e-3, device=device,
                             save_dir=save_dir, sample_every=100)
@@ -714,7 +714,7 @@ def main():
     plt.title('Training Loss')
     plt.yscale('log')
     plt.grid(True, alpha=0.3)
-    plt.savefig('C:/Users/Guilhem/Desktop/Quant/PhyStat&ML/diffusion_from_scratch/training_loss.png',
+    # plt.savefig('figs',
                 dpi=150, bbox_inches='tight')
     plt.close()
     print("    Saved: training_loss.png")
@@ -730,13 +730,13 @@ def main():
     print("\n[7] Visualizing results...")
 
     fig_samples = visualize_samples(data[:2000], samples)
-    plt.savefig('C:/Users/Guilhem/Desktop/Quant/PhyStat&ML/diffusion_from_scratch/comparison.png',
+    # plt.savefig('figs',
                 dpi=150, bbox_inches='tight')
     plt.close()
     print("    Saved: comparison.png")
 
     fig_reverse = visualize_reverse_process(trajectory)
-    plt.savefig('C:/Users/Guilhem/Desktop/Quant/PhyStat&ML/diffusion_from_scratch/reverse_process.png',
+    # plt.savefig('figs',
                 dpi=150, bbox_inches='tight')
     plt.close()
     print("    Saved: reverse_process.png")
