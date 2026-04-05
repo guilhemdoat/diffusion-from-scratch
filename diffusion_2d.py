@@ -53,8 +53,6 @@ def make_swiss_roll(n_samples: int = 10000) -> torch.Tensor:
     """
     Generate a 2D Swiss roll dataset.
 
-    This is a classic ML toy dataset - a spiral that tests whether
-    the model can learn a complex, non-convex distribution.
 
     The Swiss roll is parametrized as:
         x = t * cos(t)
@@ -123,10 +121,10 @@ class ForwardDiffusion:
     This is a discrete approximation of the Ornstein-Uhlenbeck process.
     At each step, we're essentially doing:
 
-        x_{t+1} = √(1-β_t) · x_t + √β_t · ε,  where ε ~ N(0, I)
+        x_{t+1} = √(1-β_{t+1}) · x_t + √β_{t+1} · ε,  where ε ~ N(0, I)
 
     This can be rewritten as:
-        x_{t+1} - x_t = -(1 - √(1-β_t)) · x_t + √β_t · ε
+        x_{t+1} - x_t = -(1 - √(1-β_{t+1})) · x_t + √β_{t+1} · ε
 
     For small β_t, this approximates:
         dx = -β/2 · x dt + √β dW
@@ -673,7 +671,7 @@ def main():
 
     # 1. Create dataset
     print("\n[1] Creating Swiss roll dataset...")
-    data = make_swiss_roll(n_samples=10000)
+    data = make_two_moons(n_samples=10000)
     print(f"    Data shape: {data.shape}")
     print(f"    Data range: [{data.min():.2f}, {data.max():.2f}]")
 
@@ -689,7 +687,7 @@ def main():
     # Visualize forward process
     print("\n[3] Visualizing forward diffusion...")
     fig_forward = diffusion.visualize_forward_process(data[:2000])
-    plt.savefig('C:/Users/Guilhem/Desktop/Quant/PhyStat&ML/diffusion_from_scratch/forward_process.png',
+    plt.savefig('C:/Users/Guilhem/Desktop/Quant/PhyStat&ML/diffusion_from_scratch/2_moons/forward_process.png',
                 dpi=150, bbox_inches='tight')
     plt.close()
     print("    Saved: forward_process.png")
@@ -701,7 +699,7 @@ def main():
     print(f"    Parameters: {num_params:,}")
 
     print("\n[5] Training (with intermediate samples every 100 epochs)...")
-    save_dir = 'C:/Users/Guilhem/Desktop/Quant/PhyStat&ML/diffusion_from_scratch'
+    save_dir = 'C:/Users/Guilhem/Desktop/Quant/PhyStat&ML/diffusion_from_scratch/2_moons'
     losses = train_diffusion(model, diffusion, data, num_epochs=500,
                             batch_size=256, lr=1e-3, device=device,
                             save_dir=save_dir, sample_every=100)
@@ -714,7 +712,7 @@ def main():
     plt.title('Training Loss')
     plt.yscale('log')
     plt.grid(True, alpha=0.3)
-    plt.savefig('C:/Users/Guilhem/Desktop/Quant/PhyStat&ML/diffusion_from_scratch/training_loss.png',
+    plt.savefig(save_dir+'/training_loss.png',
                 dpi=150, bbox_inches='tight')
     plt.close()
     print("    Saved: training_loss.png")
@@ -729,14 +727,14 @@ def main():
     # 5. Visualize results
     print("\n[7] Visualizing results...")
 
-    fig_samples = visualize_samples(data[:2000], samples)
-    plt.savefig('C:/Users/Guilhem/Desktop/Quant/PhyStat&ML/diffusion_from_scratch/comparison.png',
+    fig_samples = visualize_samples(data, samples)
+    plt.savefig(save_dir+'/comparison.png',
                 dpi=150, bbox_inches='tight')
     plt.close()
     print("    Saved: comparison.png")
 
     fig_reverse = visualize_reverse_process(trajectory)
-    plt.savefig('C:/Users/Guilhem/Desktop/Quant/PhyStat&ML/diffusion_from_scratch/reverse_process.png',
+    plt.savefig(save_dir+'/reverse_process.png',
                 dpi=150, bbox_inches='tight')
     plt.close()
     print("    Saved: reverse_process.png")
