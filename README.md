@@ -141,7 +141,7 @@ To see how this architecture would perfom on a different distribution, a second 
 
 ![Comparison](2_moons/comparison.png)
 
-![Forwad Process](2_moons/forward_process.png.png)
+![Forwad Process](2_moons/forward_process.png)
 
 ![Backward Process](2_moons/reverse_process.png)
 
