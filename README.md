@@ -135,6 +135,17 @@ This will:
 | Reverse mean | `μ = (1/√α_t) · (x_t - β_t/√(1-ᾱ_t) · ε_θ)` |
 | Score-noise relation | `∇ log p(x_t) ≈ -ε / √(1-ᾱ_t)` |
 
+## Second Test: 2 Moons
+
+To see how this architecture would perfom on a different distribution, a second test using a 2-moons shaped 2d distribution was ran.
+
+![Comparison](2_moons/comparison.png)
+
+![Forwad Process](2_moons/forward_process.png.png)
+
+![Backward Process](2_moons/reverse_process.png)
+
+
 ## References
 
 - [Ho et al., 2020 - Denoising Diffusion Probabilistic Models](https://arxiv.org/abs/2006.11239)

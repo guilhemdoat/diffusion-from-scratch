@@ -1,9 +1,9 @@
 """
-Diffusion Model from Scratch - 2D Toy Example
+Diffusion Model from Scratch
 ==============================================
 
 This implements a Denoising Diffusion Probabilistic Model (DDPM) on 2D data.
-The goal is pedagogical: understanding how diffusion models work and their
+The goal is understanding how diffusion models work and their
 connection to statistical physics.
 
 Physics Connections:
@@ -26,8 +26,6 @@ Physics Connections:
 5. Training objective: We learn the score function by "denoising score matching" -
    the network learns to predict the noise that was added, which is equivalent
    to learning the score.
-
-Author: Built with Claude for pedagogical purposes
 """
 
 import torch
@@ -52,8 +50,6 @@ print(f"Using device: {device}")
 def make_swiss_roll(n_samples: int = 10000) -> torch.Tensor:
     """
     Generate a 2D Swiss roll dataset.
-
-
     The Swiss roll is parametrized as:
         x = t * cos(t)
         y = t * sin(t)
@@ -699,7 +695,7 @@ def main():
     print(f"    Parameters: {num_params:,}")
 
     print("\n[5] Training (with intermediate samples every 100 epochs)...")
-    save_dir = 'C:/Users/Guilhem/Desktop/Quant/PhyStat&ML/diffusion_from_scratch/2_moons'
+    save_dir = 'PhyStat&ML/diffusion_from_scratch/2_moons'
     losses = train_diffusion(model, diffusion, data, num_epochs=500,
                             batch_size=256, lr=1e-3, device=device,
                             save_dir=save_dir, sample_every=100)
